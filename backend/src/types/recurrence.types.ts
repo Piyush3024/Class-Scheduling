@@ -7,11 +7,11 @@ export interface TimeSlot {
 
 export interface RecurrencePattern {
   type: RecurrenceType;
-  interval: number;           
-  weekdays?: number[];        
-  monthDates?: number[];      
-  startDate: Date;            
-  endDate: Date;              
+  interval: number;
+  weekdays?: number[];
+  monthDates?: number[];
+  startDate: Date;
+  endDate: Date;
 }
 
 export interface ClassInstance {
@@ -21,4 +21,9 @@ export interface ClassInstance {
   classId: string;
   title: string;
   description?: string;
+  instructor: string;
+  room: string;
+  capacity: number;
+  currentBookings: number;
+  status: 'scheduled' | 'completed' | 'cancelled';
 }

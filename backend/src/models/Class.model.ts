@@ -74,6 +74,47 @@ const ClassSchema = new Schema<IClassDocument>(
             trim: true,
             maxlength: [1000, 'Description cannot exceed 1000 characters'],
         },
+        instructor: {
+            type: String,
+            required: [true, 'Instructor is required'],
+            trim: true,
+            maxlength: [100, 'Instructor name cannot exceed 100 characters'],
+        },
+        duration: {
+            type: Number,
+            required: [true, 'Duration is required'],
+            min: [1, 'Duration must be at least 1 minute'],
+            max: [1440, 'Duration cannot exceed 1440 minutes (24 hours)'],
+        },
+        capacity: {
+            type: Number,
+            required: [true, 'Capacity is required'],
+            min: [1, 'Capacity must be at least 1'],
+            max: [1000, 'Capacity cannot exceed 1000'],
+        },
+        room: {
+            type: String,
+            required: [true, 'Room/Studio is required'],
+            trim: true,
+            maxlength: [100, 'Room name cannot exceed 100 characters'],
+        },
+        status: {
+            type: String,
+            enum: ['scheduled', 'completed', 'cancelled'],
+            default: 'scheduled',
+            required: true,
+        },
+        currentBookings: {
+            type: Number,
+            default: 0,
+            min: [0, 'Bookings cannot be negative'],
+            validate: {
+                validator: function (this: IClassDocument, value: number) {
+                    return value <= this.capacity;
+                },
+                message: 'Current bookings cannot exceed capacity',
+            },
+        },
         isRecurring: {
             type: Boolean,
             required: true,

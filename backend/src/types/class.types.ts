@@ -4,6 +4,12 @@ export interface IClass {
   _id?: string;
   title: string;
   description?: string;
+  instructor: string;
+  duration: number;
+  capacity: number;
+  room: string;
+  status: 'scheduled' | 'completed' | 'cancelled';
+  currentBookings: number
   isRecurring: boolean;
 
   date?: Date;
@@ -20,6 +26,12 @@ export interface IClass {
 export interface CreateClassDTO {
   title: string;
   description?: string;
+  instructor: string;
+  duration: number;
+  capacity: number;
+  room: string;
+  status: 'scheduled' | 'completed' | 'cancelled';
+  currentBookings?: number
   isRecurring: boolean;
 
   date?: string;
