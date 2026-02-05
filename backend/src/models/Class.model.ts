@@ -159,6 +159,25 @@ const ClassSchema = new Schema<IClassDocument>(
                 message: 'At least one time slot is required for recurring classes',
             },
         },
+        instanceOverrides: {
+            type: [
+                {
+                    date: { type: String, required: true },
+                    currentBookings: { type: Number },
+                    status: {
+                        type: String,
+                        enum: ['scheduled', 'completed', 'cancelled'],
+                    },
+                    instructor: { type: String },
+                    room: { type: String },
+                    startTime: { type: String },
+                    endTime: { type: String },
+                    duration: { type: Number },
+                    isDeleted: { type: Boolean, default: false },
+                },
+            ],
+            default: [],
+        },
     },
     {
         timestamps: true,

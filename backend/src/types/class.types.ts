@@ -1,5 +1,17 @@
 import { RecurrencePattern, TimeSlot } from './recurrence.types';
 
+export interface InstanceOverride {
+  date: string; 
+  currentBookings?: number;
+  status?: 'scheduled' | 'completed' | 'cancelled';
+  instructor?: string;
+  room?: string;
+  startTime?: string;
+  endTime?: string;
+  duration?: number;
+  isDeleted?: boolean; 
+}
+
 export interface IClass {
   _id?: string;
   title: string;
@@ -18,6 +30,8 @@ export interface IClass {
 
   recurrencePattern?: RecurrencePattern;
   timeSlots?: TimeSlot[];
+
+  instanceOverrides?: InstanceOverride[];
 
   createdAt?: Date;
   updatedAt?: Date;
@@ -47,9 +61,13 @@ export interface CreateClassDTO {
     endDate: string;
   };
   timeSlots?: TimeSlot[];
+  instanceOverrides?: InstanceOverride[];
 }
 
-export interface UpdateClassDTO extends Partial<CreateClassDTO> { }
+export interface UpdateClassDTO extends Partial<CreateClassDTO> {
+  instanceOverrides?: InstanceOverride[];
+}
+
 
 export interface ClassQueryParams {
   page?: string;
