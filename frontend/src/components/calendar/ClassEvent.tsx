@@ -1,7 +1,7 @@
 import { ClassInstance } from "@/types";
 import { formatTime } from "@/utils/date.utils";
 import { cn } from "@/lib/utils";
-import { Users } from "lucide-react";
+import { User } from "lucide-react";
 
 interface ClassEventProps {
   instance: ClassInstance;
@@ -33,8 +33,8 @@ export const ClassEvent = ({ instance }: ClassEventProps) => {
         {formatTime(instance.startTime)} - {formatTime(instance.endTime)}
       </div>
       <div className="text-[10px] flex items-center gap-1 mt-0.5">
-        <Users className="h-2.5 w-2.5" />
-        {instance.currentBookings}/{instance.capacity}
+        <User className="h-2.5 w-2.5" />
+        {instance.instructor} - {instance.room}
       </div>
     </div>
   );
